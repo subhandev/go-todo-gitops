@@ -308,6 +308,26 @@ curl -k https://todo.local/todos
 
 ---
 
+## Screenshots
+
+### ArgoCD GitOps Sync
+
+![ArgoCD Sync](docs/screenshots/argocd-synced.png)
+
+### Kubernetes Cluster Resources
+
+![Kubernetes Pods](docs/screenshots/k8s-pods.png)
+
+### HTTPS-enabled Todo API
+
+![HTTPS Todo API](docs/screenshots/https-app.png)
+
+### TLS Certificate Status
+
+![TLS Certificate](docs/screenshots/tls-certificate.png)
+
+---
+
 ## Future Improvements
 
 Potential enhancements:
