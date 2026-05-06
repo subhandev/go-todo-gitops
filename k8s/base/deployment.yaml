@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-todo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-todo
+  template:
+    metadata:
+      labels:
+        app: go-todo
+    spec:
+      containers:
+        - name: go-todo
+          image: go-todo:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080

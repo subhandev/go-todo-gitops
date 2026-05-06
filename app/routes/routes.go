@@ -15,7 +15,14 @@ func New(db *gorm.DB) *gin.Engine {
 		c.JSON(http.StatusOK, gin.H{"ok": true})
 	})
 
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Go Todo API running",
+		})
+	})
+
 	h := handlers.NewTodoHandler(db)
+
 	r.GET("/todos", h.List)
 	r.GET("/todos/:id", h.Get)
 	r.POST("/todos", h.Create)
@@ -24,4 +31,3 @@ func New(db *gorm.DB) *gin.Engine {
 
 	return r
 }
-
