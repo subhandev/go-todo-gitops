@@ -1,0 +1,16 @@
+# Binaries
+bin/
+dist/
+
+# Database
+*.db
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Env
+.env
