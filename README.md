@@ -247,6 +247,8 @@ https://todo.local
 
 Since this uses a self-signed certificate for local development, the browser will show a security warning. Proceed manually to continue.
 
+For curl requests, use the `-k` flag to allow self-signed certificates.
+
 ---
 
 ## Hosts File
@@ -293,7 +295,7 @@ kubectl get applications -n argocd
 ### Create Todo
 
 ```bash
-curl -X POST http://todo.local/todos \
+curl -k -X POST https://todo.local/todos \
   -H "Content-Type: application/json" \
   -d '{"title":"Buy milk","done":false}'
 ```
@@ -301,7 +303,7 @@ curl -X POST http://todo.local/todos \
 ### List Todos
 
 ```bash
-curl http://todo.local/todos
+curl -k https://todo.local/todos
 ```
 
 ---
