@@ -18,6 +18,63 @@ The project is intentionally kept simple while showcasing a production-oriented 
 
 ---
 
+## Quick Start
+
+```bash
+# Clone repository
+git clone https://github.com/subhandev/go-todo-gitops.git
+
+cd go-todo-gitops
+
+# Create KIND cluster
+kind create cluster --name go-todo --config scripts/kind-config.yaml
+
+# Install ingress-nginx
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+
+# Install cert-manager
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
+
+# Build Docker image
+docker build -f docker/Dockerfile -t go-todo:latest .
+
+# Load image into KIND
+kind load docker-image go-todo:latest --name go-todo
+
+# Deploy application
+kubectl apply -k k8s/base
+
+# Install Argo CD
+kubectl create namespace argocd
+
+kubectl apply -n argocd \
+  -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# Apply Argo CD application
+kubectl apply -f k8s/argocd/application.yaml
+```
+
+Add the following entries to `/etc/hosts`:
+
+```text
+127.0.0.1 todo.local
+127.0.0.1 argocd.local
+```
+
+Application:
+
+```text
+https://todo.local
+```
+
+Argo CD:
+
+```text
+http://argocd.local
+```
+
+---
+
 ## Architecture
 
 ```text
@@ -305,26 +362,6 @@ curl -k -X POST https://todo.local/todos \
 ```bash
 curl -k https://todo.local/todos
 ```
-
----
-
-## Screenshots
-
-### ArgoCD GitOps Sync
-
-![ArgoCD Sync](docs/screenshots/argocd-synced.png)
-
-### Kubernetes Cluster Resources
-
-![Kubernetes Pods](docs/screenshots/k8s-pods.png)
-
-### HTTPS-enabled Todo API
-
-![HTTPS Todo API](docs/screenshots/https-app.png)
-
-### TLS Certificate Status
-
-![TLS Certificate](docs/screenshots/tls-certificate.png)
 
 ---
 
