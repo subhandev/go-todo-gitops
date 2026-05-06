@@ -17,7 +17,7 @@ func New(db *gorm.DB) *gin.Engine {
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": "Go Todo API running",
+			"message": "Go Todo API running, this is home route.",
 		})
 	})
 
