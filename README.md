@@ -374,7 +374,6 @@ Potential enhancements:
 * CI/CD pipeline using GitHub Actions
 * Helm chart packaging
 * Metrics and monitoring
-* Authentication and authorization
 
 ---
 
